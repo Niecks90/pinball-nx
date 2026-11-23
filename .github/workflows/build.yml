@@ -10,8 +10,6 @@ jobs:
     container: devkitpro/devkita64:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: dkp-pacman -Syu --noconfirm switch-tools
       - name: Build
         run: make
       - name: Upload NRO
