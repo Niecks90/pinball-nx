@@ -20,7 +20,7 @@ LDLIBS      := -lnx -lm
 
 APP_TITLE   := Pinball NX
 APP_AUTHOR  := Niecks90
-APP_VERSION := 1.0.0
+APP_VERSION := 0.1.0
 
 all: $(TARGET).nro
 

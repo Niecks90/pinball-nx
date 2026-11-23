@@ -1,0 +1,24 @@
+name: Release Nintendo Switch NRO
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build release NRO
+        run: make
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: pinball-nx.nro
+          body_path: CHANGELOG.md
+          generate_release_notes: false
