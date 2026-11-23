@@ -15,7 +15,7 @@ DEPS        := $(OBJECTS:.o=.d)
 ARCH        := -march=armv8-a+crc+crypto -mtune=cortex-a57
 CPPFLAGS    := -Isrc -Isrc/core -Isrc/game -I$(DEVKITPRO)/libnx/include
 CFLAGS      := -g -O2 -std=gnu11 -Wall -Wextra -Wno-unused-parameter -ffunction-sections $(ARCH)
-LDFLAGS     := -specs=$(DEVKITPRO)/libnx/switch.specs -L$(DEVKITPRO)/libnx/lib -Wl,--gc-sections
+LDFLAGS     := -specs=$(DEVKITPRO)/libnx/switch.specs -L$(DEVKITPRO)/libnx/lib -Wl,--gc-sections -Wl,-z,notext
 LDLIBS      := -lnx -lm
 
 APP_TITLE   := Pinball NX
