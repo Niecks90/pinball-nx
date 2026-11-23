@@ -25,6 +25,7 @@ typedef struct {
 } Config;
 
 static PadState g_pad;
+static Framebuffer g_fb;
 static Config g_config = { ORIENTATION_LANDSCAPE, true };
 static uint32_t *g_frame;
 static size_t g_frame_pixels;
@@ -169,8 +170,8 @@ static void apply_touch(uint32_t *buttons)
 
 int main(void)
 {
-    gfxInitDefault();
     consoleInit(NULL);
+    framebufferCreate(&g_fb, nwindowGetDefault(), SCREEN_W, SCREEN_H, PIXEL_FORMAT_RGBA_8888, 2);
     fsdevMountSdmc();
     padConfigureInput(1, HidNpadStyleSet_NpadStandard);
     padInitializeDefault(&g_pad);
@@ -207,9 +208,9 @@ int main(void)
 
         uint32_t buttons = 0;
         apply_touch(&buttons);
-        if (held & (HidNpadButton_L | HidNpadButton_ZL | HidNpadButton_DPadLeft)) buttons |= GBC_B;
+        if (held & (HidNpadButton_L | HidNpadButton_ZL | HidNpadButton_Left)) buttons |= GBC_B;
         if (held & (HidNpadButton_R | HidNpadButton_ZR | HidNpadButton_A)) buttons |= GBC_A;
-        if (held & HidNpadButton_DPadDown) buttons |= GBC_DOWN;
+        if (held & HidNpadButton_Down) buttons |= GBC_DOWN;
         if (held & HidNpadButton_X) buttons |= GBC_LEFT;
         if (held & HidNpadButton_Y) buttons |= GBC_RIGHT;
 
@@ -221,12 +222,11 @@ int main(void)
         }
 
         u32 stride;
-        framebufferBegin();
-        u32 *fb = (u32 *)framebufferAcquire(&stride);
+        u32 *fb = (u32 *)framebufferBegin(&g_fb, &stride);
         if (fb) {
             for (int y = 0; y < SCREEN_H; y++)
                 memcpy((uint8_t *)fb + y * stride, &g_frame[(size_t)y * SCREEN_W], SCREEN_W * sizeof(uint32_t));
-            framebufferEnd();
+            framebufferEnd(&g_fb);
         }
         svcSleepThread(16666666);
     }
@@ -235,7 +235,7 @@ int main(void)
     free(rom);
     free(g_frame);
     fsdevUnmountDevice("sdmc");
+    framebufferClose(&g_fb);
     consoleExit(NULL);
-    gfxExit();
     return 0;
 }
