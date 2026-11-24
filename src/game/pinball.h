@@ -164,6 +164,9 @@ int  pb_stage(const Pinball *pb);
 /* what a stage is in the ROM played: its table (PB_TABLE_*, -1), its bonus stage (PB_BONUS_*, 0) */
 int  pb_stage_table(const Pinball *pb, int stage);
 int  pb_stage_bonus(const Pinball *pb, int stage);
+bool pb_ball_pos(const Pinball *pb, int *x, int *y);
+int  pb_rom_id(const Pinball *pb);
+const char *pb_rom_name(const Pinball *pb);
 
 /* The front-ends press the buttons of the game's default key configuration (OPTION > KEY
  * CONFIG). Once the game has loaded it (from the title screen on) and out of its options, a

@@ -1710,6 +1710,24 @@ int pb_stage_table(const Pinball *pb, int stage) { return stage >= 0 && stage < 
 
 int pb_stage_bonus(const Pinball *pb, int stage) { return stage >= 0 && stage < 32 ? PBR->bonus[stage] : PB_BONUS_NONE; }
 
+bool pb_ball_pos(const Pinball *pb, int *x, int *y)
+{
+    if (!pb || !pb->rom || !pb_in_game(pb)) return false;
+    if (!W(W_PinballIsVisible)) return false;
+    uint8_t st = W(W_CurrentStage);
+    int bx = (int)W(W_BallXPos + 1);
+    int by = (int)W(W_BallYPos + 1);
+    if (is_field(pb, st) && !is_top(pb, st))
+        by += PB_TOP_ROWS;
+    if (x) *x = bx;
+    if (y) *y = by;
+    return true;
+}
+
+int pb_rom_id(const Pinball *pb) { return (pb && pb->rom) ? pb->rom->id : -1; }
+
+const char *pb_rom_name(const Pinball *pb) { return (pb && pb->rom) ? pb->rom->name : ""; }
+
 int pb_fix_key_config(Pinball *pb)
 {
     /* DefaultKeyConfigs: ball start A, flippers LEFT and A, tilts DOWN, B and SELECT, menu START */

@@ -2,6 +2,19 @@
 
 All notable changes to Pinball NX are documented here.
 
+## [0.2.0] - 2026-11-24
+
+### Added
+- **Landscape (`0°`) zoomed auto-scrolling camera**: Renders the unified table at 4× scale (`640×720`) in Landscape mode and smoothly tracks the active ball (`pb_ball_pos()`) with velocity lookahead, deadzone damping, and table bounds clamping. Can be toggled between `FOLLOW BALL` and `FULL TABLE` (`L` / `ZL` in the `+` Pause menu, persisted via `landscape_camera=1|0` in `config.ini`).
+- **Pokémon Pinball Generations 1.6 support (from upstream `ReiniShari/Pinball-NS`)**:
+  - Automatic discovery of Original US (`pokemon_pinball.gbc`, Gen 1: Red & Blue) and Generations 1.6 (`pokemon_pinball_generations.gbc`, 6 tables: Red, Blue, Gold, Silver, Ruby & Sapphire).
+  - Automatic IPS patching if `pokemon_pinball_generations.ips` or `generations.ips` is placed alongside the US ROM (cached to `pokemon_pinball_generations.gbc`).
+  - Per-generation cartridge SRAM saves (`pinball.sav` and `gen_pinball.sav`) flushed safely during play, on switch, and on exit.
+  - Generation status display in the Landscape HUD and Pause menu, `[Y]` Generation switching in the Pause menu, and `generation=0|1` persistence in `config.ini`.
+
+### Fixed
+- **Orientation-rotated touch overlay & UI text**: Touch guide zones (`L FLIPPER` / `L FLIP`, `R FLIPPER` / `R FLIP`, `PLUNGER`, `NUDGE L`, `NUDGE UP`, `NUDGE R`, `PAUSE`), Pause menu, and missing-ROM screens now rotate cleanly in `90° CW` and `270° CCW` Portrait/TATE modes alongside the playfield and touch coordinates.
+
 ## [0.1.1] - 2026-11-24
 
 ### Fixed
@@ -26,5 +39,6 @@ All notable changes to Pinball NX are documented here.
 - Added modern libnx `PadState`/`padUpdate`, touch-screen input, lifecycle loop, and SD-card configuration handling.
 - Added missing-ROM messaging, NACP metadata, a 256x256 icon, devkitA64 packaging, and GitHub Actions CI/release automation.
 
+[0.2.0]: https://github.com/Niecks90/pinball-nx/releases/tag/v0.2.0
 [0.1.1]: https://github.com/Niecks90/pinball-nx/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Niecks90/pinball-nx/releases/tag/v0.1.0
