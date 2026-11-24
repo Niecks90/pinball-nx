@@ -1,6 +1,6 @@
 # Pinball NX
 
-Pinball NX is a Nintendo Switch/Horizon OS port of [Pinball NS](https://github.com/ReiniShari/Pinball-NS). It keeps the upstream C11 Game Boy Color emulator and unified-table runtime, then adds a libnx frontend with native 16:9 presentation, optional portrait/TATE rotation, controller support, and simultaneous touch zones.
+Pinball NX is a Nintendo Switch port of PKMN Pinball based on [Pinball NS](https://github.com/ReiniShari/Pinball-NS). It keeps the upstream C11 Game Boy Color emulator and unified-table runtime, then adds a libnx frontend with native 16:9 presentation, optional portrait/TATE rotation, controller support, and simultaneous touch zones.
 
 ## Features
 
