@@ -18,7 +18,13 @@ jobs:
         run: make
       - name: Extract changelog notes
         run: |
-          awk '/^## \[0\.1\.0\]/{show=1} show{print} /^## \[/{if (show && !/0\.1\.0/) exit}' CHANGELOG.md > release-notes.md
+          ver="${GITHUB_REF_NAME#v}"
+          awk -v ver="$ver" '
+            index($0, "## [" ver "]") == 1 { show = 1 }
+            show && /^## \[/ && index($0, "## [" ver "]") != 1 { exit }
+            show && /^\[.*\]: https?:\/\// { exit }
+            show { print }
+          ' CHANGELOG.md > release-notes.md
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:

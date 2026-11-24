@@ -21,10 +21,11 @@ sdmc:/
     └── pinball-nx/
         ├── pinball-nx.nro              # downloaded from the GitHub release
         ├── pokemon_pinball.gbc         # user-supplied compatible US ROM
-        └── config.ini                  # generated and updated automatically
+        ├── config.ini                  # created automatically on first boot
+        └── boot.log                    # startup diagnostic log
 ```
 
-`pokemon_pinball.gbc` is the only required user-supplied data file. Pinball NX does not distribute ROMs. `config.ini` stores the orientation and touch-guide preference and is created when settings are changed. The current Switch frontend reads the ROM and configuration from the exact paths shown above; no additional `romfs:/` assets or external folders are required.
+`pokemon_pinball.gbc` is the only required user-supplied data file. Pinball NX does not distribute ROMs. `config.ini` stores the orientation and touch-guide preference and is created automatically on first boot. `boot.log` records step-by-step startup diagnostics. The current Switch frontend reads the ROM and configuration from the exact paths shown above; no additional `romfs:/` assets or external folders are required.
 
 ## Controls
 
@@ -42,7 +43,7 @@ Touch is multi-touch: flippers and nudge/plunger gestures can be held simultaneo
 
 ## Installation
 
-1. Download `pinball-nx.nro` from the [v0.1.0 release](https://github.com/Niecks90/pinball-nx/releases/tag/v0.1.0).
+1. Download `pinball-nx.nro` from the [v0.1.1 release](https://github.com/Niecks90/pinball-nx/releases/tag/v0.1.1).
 2. Copy it to `sdmc:/switch/pinball-nx/`.
 3. Dump your compatible US Pokémon Pinball ROM and copy it to `sdmc:/switch/pinball-nx/pokemon_pinball.gbc`.
 4. Launch Pinball NX from the Homebrew Menu.
