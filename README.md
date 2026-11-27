@@ -6,7 +6,7 @@ Pinball NX is a Nintendo Switch port of PKMN Pinball based on [Pinball NS](https
 
 - 16:9 landscape presentation with a zoomed auto-scrolling camera that smoothly tracks the ball (or toggleable full-table overview).
 - Full-table Portrait/TATE rotation at 90° CW and 270° CCW with matching rotated touch guide labels.
-- Support for both **Pokémon Pinball (Original / Gen 1: Red & Blue)** and **Pokémon Pinball Generations 1.6 (Red, Blue, Gold, Silver, Ruby & Sapphire)**, including automatic IPS patching and in-menu switching with separate cartridge saves.
+- Support for both **Pokémon Pinball (Original / Gen 1: Red & Blue)** and **Pokémon Pinball Generations 1.6 (Red, Blue, Gold, Silver)**, including automatic IPS patching and in-menu switching with separate cartridge saves.
 - Multi-touch flippers, plunger, table-nudge, and pause zones.
 - Joy-Con and Pro Controller input through modern `PadState`/`padUpdate`, plus 48 kHz stereo `audout` audio.
 - SD-card configuration (`config.ini`), startup diagnostics (`boot.log`), and a readable missing-ROM screen.
